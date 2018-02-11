@@ -41,13 +41,16 @@ https://linode.com/docs/databases/mysql/install-mysql-on-ubuntu-14-04/
 `python manage.py migrate`
 
 
+##### Run below command to run the application
+`python manage.py runserver`
+
 ##### Use Below Commands to do the transactions
   - To Add Member
-  `curl -XPOST -H"Content-Type:application/json" http://127.0.0.1:9000/users -d'{"userId": 1, "firstName": "Ramesh", "lastName": "Kumar", "emailId": "ramesh@mail.com", "role": 0}'`
+  `curl -XPOST -H"Content-Type:application/json" http://localhost:8000/teams/add -d'{"userId": 1, "firstName": "Ramesh", "lastName": "Kumar", "emailId": "ramesh@mail.com", "role": 0}'`
   
   - To update member
-  `curl -XPOST -H"Content-Type:application/json" http://127.0.0.1:9000/users -d'{"userId": 1, "firstName": "Ramesh", "lastName": "C"}'`
-  `curl -XPUT -H"Content-Type:application/json" http://127.0.0.1:9000/users -d'{"userId": 1, "firstName": "Ramesh", "lastName": "C"}'`
+  `curl -XPOST -H"Content-Type:application/json" http://localhost:8000/teams/update -d'{"userId": 1, "firstName": "Ramesh", "lastName": "C"}'`
+  `curl -XPUT -H"Content-Type:application/json" http://localhost:8000/teams/update -d'{"userId": 1, "firstName": "Ramesh", "lastName": "C"}'`
   
   - To delete member
-  `curl -XDELETE -H"Content-Type:application/json" http://127.0.0.1:9000/users -d'{"userId": 1}'`
+  `curl -XDELETE -H"Content-Type:application/json" http://localhost:8000/teams/delete -d'{"userId": 1}'`
