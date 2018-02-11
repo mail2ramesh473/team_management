@@ -45,15 +45,21 @@ def add_team_member(request):
             role_val = 'admin' if role in (1, 'admin') else 'regular'
             post_data['role'] = role_val
             unq_id = post_data.get('userId')
-            if not unq_id:
-                team_obj = TeamForm(post_data)
-                if team_obj.is_valid():
-                    final_model = team_obj.save()
-                    unique_id = final_model.pk
-                    post_data['userId'] = unique_id
-                    response = format_response(post_data)
-                    http_response = HttpResponse(json.dumps(response), content_type="application/json")
+            if unq_id:
+                instance = getMemberInstance(unq_id)
+                if instance:
+                    http_response = HttpResponseBadRequest(content="Document Already exists")
                     return http_response
+                else:
+                    post_data.pop('userId')
+            team_obj = TeamForm(post_data)
+            if team_obj.is_valid():
+                final_model = team_obj.save()
+                unique_id = final_model.pk
+                post_data['userId'] = unique_id
+                response = format_response(post_data)
+                http_response = HttpResponse(json.dumps(response), content_type="application/json")
+                return http_response
         else:
             return HttpResponseBadRequest(content="Neither of required fields are present in Request payload")
 
