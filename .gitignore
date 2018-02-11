@@ -1,0 +1,4 @@
+*.pyc
+teams/*.pyc
+team_management/*.pyc
+teams/migrations/*.pyc
