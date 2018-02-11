@@ -63,7 +63,7 @@ def add_team_member(request):
         else:
             return HttpResponseBadRequest(content="Neither of required fields are present in Request payload")
 
-    return HttpResponseBadRequest(content="Tested Suucessfully")
+    return HttpResponseBadRequest(content="Required POST Method to add new user")
 
 
 @csrf_exempt
